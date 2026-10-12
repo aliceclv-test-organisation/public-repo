@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
     # Change to file
     # Change to file
     # Change to file
+    # Change to file
+
     File.open(foo) # rb/path-injection
   end
 end
