@@ -1,0 +1,21 @@
+name: Error Sim Code Scanning
+on:
+  workflow_dispatch:
+permissions:
+  security-events: write
+  contents: read
+  actions: read
+jobs:
+  codeql-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Initialize CodeQL (Java, manual build)
+        uses: github/codeql-action/init@v3
+        with:
+          languages: java-kotlin
+          build-mode: manual
+      - name: Intentionally build nothing
+        run: echo "No build performed on purpose to force analyze failure"
+      - name: Analyze (expected to fail - no source seen)
+        uses: github/codeql-action/analyze@v3
